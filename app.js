@@ -2,6 +2,7 @@
 
 import express from "express"; // import express
 import indexRouter from "./routes/indexRouter.js";
+import itemRouter from "./routes/itemRouter.js"
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -20,6 +21,7 @@ app.set("view engine", "ejs");
 
 
 app.use("/", indexRouter);
+app.use("/items", itemRouter);
 
 const PORT = 3000;
 app.listen(PORT, (error) => {
