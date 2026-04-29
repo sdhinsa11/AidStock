@@ -1,0 +1,41 @@
+
+<html>
+	<head> 
+		<!-- Refer to the indexStyles.css as this and not as ../public/indexStyles.css -->
+		<link rel="stylesheet" href="/itemsStyles.css">
+	</head>
+	<body>
+		<div class="main">
+
+			<div class="items - all">
+				<%items.forEach((item)=>{%>
+				<ul>
+					<li>
+						<!-- We have a link here to the item so when we click it it redirects to that link using the item id (route we set up in indexRouter) -->
+						<a href="/<%= item.id %>">
+							<%=item.name%>
+						</a>
+						
+					</li>
+
+					<li>
+						<%=item.description%>
+					</li>
+					
+					<li>
+						<%=item.quantity%>
+					</li>
+					
+				</ul>
+				<%});%>
+			</div>
+		
+			<div class="links - addBtn">
+				<a href="/new">New Message</a>
+			</div>
+		</div>
+	</body>
+	
+</html>
+
+ 
