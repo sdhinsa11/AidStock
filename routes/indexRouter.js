@@ -1,6 +1,6 @@
 // routes/indexRouter.js
 import { Router } from "express";
-import { displayHome } from "../controllers/indexController";
+import { displayHome } from "../controllers/indexController.js";
 
 const indexRouter = Router();
 
