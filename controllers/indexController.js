@@ -1,5 +1,5 @@
 import { body, validationResult, matchedData} from "express-validator";
-import {getItems} from "../storages/queries.js"; // holds the functions we want to call
+// import {getItems} from "../storage/queries.js";
 
 
 export async function displayHome(req, res){
