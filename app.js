@@ -4,6 +4,7 @@ import express from "express"; // import express
 import indexRouter from "./routes/indexRouter.js";
 import itemRouter from "./routes/itemRouter.js"
 import path from "path";
+import "dotenv/config";
 import { fileURLToPath } from "url";
 
 const app = express(); // initialize app - this is our server
@@ -22,6 +23,7 @@ app.set("view engine", "ejs");
 
 app.use("/", indexRouter);
 app.use("/items", itemRouter);
+// app.use("/new", newItemRouter);
 
 const PORT = 3000;
 app.listen(PORT, (error) => {
