@@ -2,11 +2,43 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="/indexStyles.css">
+        <link rel="stylesheet" href="/navBar.css">
         <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 
     </head>
     <body>
-        <div class="title"><h1>Message Board</h1></div>
+
+        <div class="navbar">
+
+            <div class="right">
+
+                <div class="title"><h1>Aid Stock</h1></div>
+
+                <div class="links">
+                    <a href="/categories" class="btn">Categories</a>
+                    <a href="/items" class="btn">Items</a>
+                </div>
+
+
+             </div>
+        
+
+            <div class="left">
+
+                <form method="GET" action="/search">
+
+                    <label>Search:
+                        <input type="text" name="users_name"/>
+                    </label>
+                    <button type="submit" class="btn">Submit</button>
+                        <!-- // Add the form data to a object inside req.body - inside the POST object - need to use a middleware called express.urlencoded() to parse form data  -->
+                </form>
+
+            </div>
+
+
+        </div>
+
+
     </body>
 </html>
