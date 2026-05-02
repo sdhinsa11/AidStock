@@ -20,6 +20,13 @@ async function getSpecificItems() {
   return rows;
 }
 
+async function getItemDb(itemID){
+
+  const { item } = await pool.query("SELECT * FROM items WHERE id = ($1)", [itemID]);
+  return item;
+
+}
+
 
 // async function insertUsername(username) {
 //   await pool.query("INSERT INTO usernames (username) VALUES ($1)", [username]);
@@ -28,6 +35,7 @@ async function getSpecificItems() {
 export {
   getItems,
   getCategory,
-  getSpecificItems
+  getSpecificItems,
+  getItemDb
 
 };

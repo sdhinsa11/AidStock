@@ -1,6 +1,6 @@
 
 import { Router } from "express";
-import { getAllItems  } from "../controllers/itemsController.js";
+import { getAllItems, getItem } from "../controllers/itemsController.js";
 
 const itemRouter = Router();
 
@@ -8,6 +8,6 @@ const itemRouter = Router();
 
 itemRouter.get("/", getAllItems);
 
-// itemRouter.get("/:id", <controllers></controllers>);
+itemRouter.get("/:id", getItem);
 
 export default itemRouter;
