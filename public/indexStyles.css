@@ -1,3 +1,7 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
 .btn {
   display: inline-block;
   padding: 10px 16px;
@@ -5,4 +9,9 @@
   color: white;
   text-decoration: none;
   border-radius: 6px;
+}
+
+
+.title{
+  color: #AF0A08;
 }
