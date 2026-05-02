@@ -8,9 +8,7 @@ async function getItems() {
 }
 
 async function getCategory() {
-  // WORK ON 
-  const { rows } = await pool.query("SELECT * FROM items");
-  // const { rows } = await pool.query("SELECT * FROM usernames");
+  const { rows } = await pool.query("SELECT * FROM categories");
   return rows;
 }
 

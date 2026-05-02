@@ -1,0 +1,39 @@
+
+<html>
+	<head> 
+		<!-- Refer to the indexStyles.css as this and not as ../public/indexStyles.css -->
+		<link rel="stylesheet" href="/itemsStyles.css">
+	</head>
+	<body>
+		<div class="main-categories">
+
+			<div class="categories - all">
+				<%categories.forEach((c)=>{%>
+				<ul>
+					<li>
+						<!-- We need a link here back to the items page for each category so that it cna be filtered on it -->
+						<a href="/items">
+                            <%= c.name %>
+                        </a>
+						
+					</li>
+
+					<li>
+						<%=c.description%>
+					</li>
+					
+				</ul>
+				<%});%>
+			</div>
+
+			<div class="links"><a href="/">Back</a></div>
+		
+			<!-- <div class="links - addBtn">
+				<a href="/new">New Item</a>
+			</div> -->
+		</div>
+	</body>
+	
+</html>
+
+ 
