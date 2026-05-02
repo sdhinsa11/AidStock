@@ -1,8 +1,8 @@
 import { body, validationResult, matchedData} from "express-validator";
-import {getItems, getCategory, getSpecificItems, getItemDb} from "../storage/queries.js"; // holds the functions we want to call
+import {getItems, getCategory, getItemDb} from "../storage/queries.js"; // holds the functions we want to call
 
 
-export async function getAllItems(req, res){
+async function getAllItems(req, res){
     const items = await getItems(); // using the DB
     res.render("items", {
         items: items
@@ -10,17 +10,17 @@ export async function getAllItems(req, res){
 
     });
 
-    console.log(items);
+    // console.log(items);
 }
 
 
 async function getItem(req, res){
 
     const { id } = req.params;
-    const { item } = await getItemDb(id); // getting the item by ID
+    const item = await getItemDb(id); // getting the item by ID - did not destructure it like this { item } because it doesn't return an object that says item and so in queries.js we needed to go into the rows and return the first index
     
-    if (!msg) {
-		res.status(404).send("Msg not found");
+    if (!item) {
+		res.status(404).send("Item not found");
 		return; 
 	}
 

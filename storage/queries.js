@@ -1,7 +1,6 @@
 import { pool } from "./db.js"; // change to ESLint
 
 
-// Sample queries 
 async function getItems() {
   const { rows } = await pool.query("SELECT * FROM items");
   // const { rows } = await pool.query("SELECT * FROM usernames");
@@ -9,12 +8,7 @@ async function getItems() {
 }
 
 async function getCategory() {
-  const { rows } = await pool.query("SELECT * FROM items");
-  // const { rows } = await pool.query("SELECT * FROM usernames");
-  return rows;
-}
-
-async function getSpecificItems() {
+  // WORK ON 
   const { rows } = await pool.query("SELECT * FROM items");
   // const { rows } = await pool.query("SELECT * FROM usernames");
   return rows;
@@ -22,8 +16,10 @@ async function getSpecificItems() {
 
 async function getItemDb(itemID){
 
-  const { item } = await pool.query("SELECT * FROM items WHERE id = ($1)", [itemID]);
-  return item;
+  const item = await pool.query("SELECT * FROM items WHERE id = ($1)", [itemID]);
+
+  // console.log(item.rows[0]);
+  return item.rows[0];
 
 }
 
@@ -35,7 +31,6 @@ async function getItemDb(itemID){
 export {
   getItems,
   getCategory,
-  getSpecificItems,
   getItemDb
 
 };

@@ -3,9 +3,9 @@ import "dotenv/config";
 // All of the following properties should be read from environment variables
 // We're hardcoding them here for simplicity
 
-console.log("DB:", process.env.DB);
-console.log("USER:", process.env.ROLE_NAME);
-console.log("PORT:", process.env.DB_PORT);
+// console.log("DB:", process.env.DB);
+// console.log("USER:", process.env.ROLE_NAME);
+// console.log("PORT:", process.env.DB_PORT);
 
 
 export const pool = new Pool({

@@ -12,7 +12,7 @@
 				<ul>
 					<li>
 						<!-- We have a link here to the item so when we click it it redirects to that link using the item id (route we set up in indexRouter) -->
-						<a href="/<%= item.id %>">
+						<a href="/items/<%= item.id %>">
 							<%=item.name%>
 						</a>
 						
@@ -29,6 +29,8 @@
 				</ul>
 				<%});%>
 			</div>
+
+			<div class="links"><a href="/">Back</a></div>
 		
 			<!-- <div class="links - addBtn">
 				<a href="/new">New Item</a>
