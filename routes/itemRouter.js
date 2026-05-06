@@ -10,4 +10,8 @@ itemRouter.get("/", getAllItems);
 
 itemRouter.get("/:id", getItem);
 
+
+// UNCOMMENT OUT 
+// itemRouter.get("/search", getSearchedItem);
+
 export default itemRouter;
