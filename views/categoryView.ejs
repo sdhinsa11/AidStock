@@ -14,8 +14,8 @@
 				<%categories.forEach((c)=>{%>
 				<ul>
 					<li>
-						<!-- We need a link here back to the items page for each category so that it cna be filtered on it -->
-						<a href="/items">
+						<!-- We need a link here back to the items page for each category so that it can be filtered on it -->
+						<a href="/items?category=<%=c.name%>">
                             <%= c.name %>
                         </a>
 						

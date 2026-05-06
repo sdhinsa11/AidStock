@@ -14,4 +14,9 @@ export async function getCategories(req, res){
     res.render("categoryView", {categories: categories});
 }
 
+
+// async function filteredCategories(req, res){
+
+// }
+
 // add a category
