@@ -15,8 +15,4 @@ export async function getCategories(req, res){
 }
 
 
-// async function filteredCategories(req, res){
-
-// }
-
 // add a category

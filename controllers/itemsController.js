@@ -1,14 +1,37 @@
 import { body, validationResult, matchedData} from "express-validator";
-import {getItems, getCategory, getItemDb} from "../storage/queries.js"; // holds the functions we want to call
+import {getItems, getCategoryItems, getItemDb} from "../storage/queries.js"; // holds the functions we want to call
 
 
 async function getAllItems(req, res){
-    const items = await getItems(); // using the DB
-    res.render("items", {
-        items: items
-        
+    // check if there are params
 
-    });
+    if (req.query){
+        
+        const category = req.query.category;
+        const items = await getCategoryItems(category);
+
+        res.render("items", {
+            items: items
+
+
+        });
+
+
+    }
+
+    // if yes then filter
+
+
+    
+    // no items there 
+    else{
+        const items = await getItems(); // using the DB
+        res.render("items", {
+            items: items
+        });
+
+    }
+    
 
     // console.log(items);
 }

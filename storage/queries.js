@@ -12,6 +12,12 @@ async function getCategory() {
   return rows;
 }
 
+async function getCategoryItems(category) {
+  // needs to grab from the items cause returning items but joins the two tables for that
+  const { rows } = await pool.query("SELECT * FROM items JOIN categories ON items.category_id = categories.id WHERE categories.name = ($1)", [category]);
+  return rows;
+}
+
 async function getItemDb(itemID){
 
   const item = await pool.query("SELECT * FROM items WHERE id = ($1)", [itemID]);
@@ -29,6 +35,7 @@ async function getItemDb(itemID){
 export {
   getItems,
   getCategory,
+  getCategoryItems,
   getItemDb
 
 };
