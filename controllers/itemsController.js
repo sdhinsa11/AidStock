@@ -5,29 +5,29 @@ import {getItems, getCategoryItems, getItemDb} from "../storage/queries.js"; // 
 async function getAllItems(req, res){
     // check if there are params
 
-    if (req.query){
+    if (req.query.category){
         
         const category = req.query.category;
         const items = await getCategoryItems(category);
 
         res.render("items", {
-            items: items
-
+            items: items,
+            backLink: "/categories",
+            originalUrl: req.originalUrl // takes the original url to go back to
 
         });
 
 
     }
 
-    // if yes then filter
-
-
     
     // no items there 
     else{
         const items = await getItems(); // using the DB
         res.render("items", {
-            items: items
+            items: items,
+            backLink: "/", // go back to home
+            originalUrl: req.originalUrl // takes the original url to back to
         });
 
     }
@@ -47,7 +47,7 @@ async function getItem(req, res){
 		return; 
 	}
 
-    res.render("singleItem", {item: item});
+    res.render("singleItem", {item: item, backLink: req.query.returnTo || "/items"});
 }
 
 
