@@ -1,7 +1,170 @@
+<!-- pages/items.ejs -->
 
 <html>
+
+<head>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <title>Items | Aid Stock</title>
+
+</head>
+
+<body class="font-['Quicksand'] bg-[#EDDABF]/30 min-h-screen text-stone-800">
+
+  <!-- Navbar -->
+  <%- include('navBarView') %>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-6 py-12">
+
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-10">
+
+      <div>
+
+        <p class="uppercase tracking-widest text-sm text-[#AF0A08] font-semibold">
+          Inventory Dashboard
+        </p>
+
+        <h1 class="text-5xl font-bold text-[#AF0A08] mt-2">
+          Inventory Items
+        </h1>
+
+        <p class="text-stone-600 mt-3 max-w-xl leading-relaxed">
+          View and manage all inventory items, quantities, and stock details.
+        </p>
+
+      </div>
+
+      <!-- Add Item Button -->
+      <a
+        href="/items/newItem"
+        class="px-6 py-3 rounded-2xl bg-[#AF0A08] text-white hover:bg-[#8f0806] transition duration-200 shadow-md text-center"
+      >
+        + Add New Item
+      </a>
+
+    </div>
+
+    <!-- Item Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <% items.forEach((item) => { %>
+
+        <!-- Item Card -->
+        <div class="bg-white rounded-3xl shadow-md border border-[#E0C27D] p-6 hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between">
+
+          <div>
+
+            <!-- Item Name -->
+            <a
+              href="/items/<%= item.id %>?returnTo=<%= encodeURIComponent(originalUrl) %>"
+              class="text-2xl font-bold text-[#AF0A08] hover:underline"
+            >
+              <%= item.name %>
+            </a>
+
+            <!-- Description -->
+            <p class="mt-4 text-stone-700 leading-relaxed">
+              <%= item.description || "No description available." %>
+            </p>
+
+            <!-- Quantity Section -->
+            <div class="mt-6 flex items-center justify-between bg-[#EDDABF]/40 rounded-2xl px-4 py-3">
+
+              <div>
+                <p class="text-sm text-stone-500">
+                  Quantity
+                </p>
+
+                <p class="text-2xl font-bold text-[#AF0A08]">
+                  <%= item.quantity %>
+                </p>
+              </div>
+
+              <!-- Optional Unit -->
+              <% if (item.unit) { %>
+
+                <div class="text-right">
+                  <p class="text-sm text-stone-500">
+                    Unit
+                  </p>
+
+                  <p class="font-semibold">
+                    <%= item.unit %>
+                  </p>
+                </div>
+
+              <% } %>
+
+            </div>
+
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex flex-wrap gap-2 mt-6">
+
+            <!-- Increase -->
+            <button
+              class="flex-1 px-4 py-2 rounded-xl bg-[#E0A955] hover:bg-[#E09524] text-white transition duration-200 shadow-sm"
+            >
+              + Increase
+            </button>
+
+            <!-- Decrease -->
+            <button
+              class="flex-1 px-4 py-2 rounded-xl bg-[#E0C27D] hover:bg-[#E0A955] text-stone-900 transition duration-200 shadow-sm"
+            >
+              − Decrease
+            </button>
+
+            <!-- Delete -->
+            <button
+              class="w-full px-4 py-2 rounded-xl bg-red-700 hover:bg-red-800 text-white transition duration-200 shadow-sm"
+            >
+              Delete Item
+            </button>
+
+          </div>
+
+        </div>
+
+      <% }) %>
+
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="mt-12">
+
+      <a
+        href="<%= backLink %>"
+        class="inline-flex items-center gap-2 text-[#AF0A08] font-semibold hover:underline"
+      >
+        ← Back
+      </a>
+
+    </div>
+
+  </main>
+
+</body>
+
+</html>
+
+
+
+
+
+<!-- <html>
 	<head> 
-		<!-- Refer to the indexStyles.css as this and not as ../public/indexStyles.css -->
 		<link rel="stylesheet" href="/indexStyles.css">
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 	</head>
@@ -13,13 +176,10 @@
 				<%items.forEach((item)=>{%>
 				<ul>
 					<li>
-						<!-- We have a link here to the item so when we click it it redirects to that link using the item id (route we set up in indexRouter) -->
-						<!-- <a href="/items/<%= item.id %>">
-							<%=item.name%>
-						</a> -->
 
-						<!-- This sets the returnTo parameter to the original url so when we touch the item it holds the returnTo parameter for the back link   -->
-						<a href="/items/<%= item.id %>?returnTo=<%= encodeURIComponent(originalUrl) %>">
+
+						
+						<a href="/items/<%= item.id %>?returnTo=<%= encodeURIComponent(originalUrl) %>"> This sets the returnTo parameter to the original url so when we touch the item it holds the returnTo parameter for the back link 
                     		<%= item.name %>
                 		</a>
 						
@@ -44,12 +204,9 @@
 				<a href="/items/newItem">Add</a>
 			</div> 
 		
-			<!-- <div class="links - addBtn">
-				<a href="/new">New Item</a>
-			</div> -->
 		</div>
 	</body>
 	
-</html>
+</html> -->
 
  
