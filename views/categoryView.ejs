@@ -1,42 +1,90 @@
-
 <html>
-	<head> 
-		<!-- Refer to the indexStyles.css as this and not as ../public/indexStyles.css -->
-		<link rel="stylesheet" href="/indexStyles.css">
-        <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-	</head>
-	<body>
-		 <%-include('navBarView')%>
-		 
-		<div class="main-categories">
 
-			<div class="categories - all">
-				<%categories.forEach((c)=>{%>
-				<ul>
-					<li>
-						<!-- We need a link here back to the items page for each category so that it can be filtered on it -->
-						<a href="/items?category=<%=c.name%>">
-                            <%= c.name %>
-                        </a>
-						
-					</li>
+<head>
 
-					<li>
-						<%=c.description%>
-					</li>
-					
-				</ul>
-				<%});%>
-			</div>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-			<div class="links"><a href="/">Back</a></div>
-		
-			<!-- <div class="links - addBtn">
-				<a href="/new">New Item</a>
-			</div> -->
-		</div>
-	</body>
-	
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <title>Categories | Aid Stock</title>
+
+</head>
+
+<body class="font-['Quicksand'] bg-[#EDDABF]/30 min-h-screen text-stone-800">
+
+  <%- include('navBarView') %>
+
+  <main class="max-w-6xl mx-auto px-6 py-12">
+
+    <!-- Header -->
+    <div class="mb-10">
+
+      <p class="uppercase tracking-widest text-sm text-[#AF0A08] font-semibold">
+        Inventory Organization
+      </p>
+
+      <h1 class="text-5xl font-bold text-[#AF0A08] mt-2">
+        Categories
+      </h1>
+
+      <p class="text-stone-600 mt-3 max-w-xl leading-relaxed">
+        Browse inventory grouped by category.
+      </p>
+
+    </div>
+
+    <!-- Categories Grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <% categories.forEach((c) => { %>
+
+        <a
+          href="/items?category=<%= c.name %>"
+          class="block bg-white rounded-3xl shadow-md border border-[#E0C27D] p-6 hover:shadow-xl hover:-translate-y-1 transition duration-300"
+        >
+
+          <!-- Top -->
+          <div class="flex justify-between items-start gap-4">
+
+            <h2 class="text-2xl font-bold text-[#AF0A08]">
+              <%= c.name %>
+            </h2>
+
+            <!-- Item Count -->
+            <span class="px-3 py-1 rounded-full bg-[#EDDABF] text-[#AF0A08] text-sm font-semibold">
+              <%= c.item_count || 0 %>
+            </span>
+
+          </div>
+
+          <!-- Description -->
+          <p class="mt-4 text-stone-700 leading-relaxed">
+            <%= c.description || "No description available." %>
+          </p>
+
+        </a>
+
+      <% }) %>
+
+    </div>
+
+    <!-- Back -->
+    <div class="mt-12">
+
+      <a
+        href="/"
+        class="text-[#AF0A08] font-semibold hover:underline"
+      >
+        ← Back
+      </a>
+
+    </div>
+
+  </main>
+
+</body>
+
 </html>
-
- 
