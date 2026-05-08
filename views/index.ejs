@@ -1,7 +1,150 @@
+<!-- pages/index.ejs -->
 
 <html>
+
+<head>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <title>Aid Stock</title>
+
+</head>
+
+<body class="font-['Quicksand'] bg-[#EDDABF]/30 min-h-screen text-stone-800">
+
+  <!-- Navbar -->
+  <%- include('navBarView') %>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-6 py-16">
+
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+
+      <!-- LEFT SIDE -->
+      <div>
+
+        <p class="uppercase tracking-widest text-sm text-[#AF0A08] font-semibold">
+          Inventory Management
+        </p>
+
+        <h1 class="text-5xl md:text-6xl font-bold text-[#AF0A08] leading-tight mt-4">
+          Organize and manage your inventory easily
+        </h1>
+
+        <p class="mt-6 text-lg text-stone-700 leading-relaxed max-w-xl">
+          Aid Stock helps organizations track inventory, manage stock quantities,
+          and organize supplies through categories in one clean dashboard.
+        </p>
+
+        <!-- Buttons -->
+        <div class="flex flex-wrap gap-4 mt-10">
+
+          <a
+            href="/items"
+            class="px-6 py-3 rounded-xl bg-[#AF0A08] text-white hover:bg-[#8f0806] transition duration-200 shadow-md"
+          >
+            View Items
+          </a>
+
+          <a
+            href="/categories"
+            class="px-6 py-3 rounded-xl bg-[#E09524] text-white hover:bg-[#D67E00] transition duration-200 shadow-md"
+          >
+            Browse Categories
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="bg-white rounded-3xl shadow-xl p-8 border border-[#E0C27D]">
+
+        <h2 class="text-2xl font-bold text-[#AF0A08]">
+          Quick Overview
+        </h2>
+
+        <div class="space-y-5 mt-8">
+
+          <!-- Card -->
+          <div class="bg-[#EDDABF]/40 rounded-2xl p-5">
+
+            <div class="flex items-center justify-between">
+
+              <h3 class="font-bold text-lg">
+                Inventory Tracking
+              </h3>
+
+              <div class="w-3 h-3 rounded-full bg-green-500"></div>
+
+            </div>
+
+            <p class="text-stone-600 mt-2 leading-relaxed">
+              Monitor available stock and quantities for all inventory items.
+            </p>
+
+          </div>
+
+          <!-- Card -->
+          <div class="bg-[#EDDABF]/40 rounded-2xl p-5">
+
+            <div class="flex items-center justify-between">
+
+              <h3 class="font-bold text-lg">
+                Category Organization
+              </h3>
+
+              <div class="w-3 h-3 rounded-full bg-[#E09524]"></div>
+
+            </div>
+
+            <p class="text-stone-600 mt-2 leading-relaxed">
+              Organize products into categories like food, hygiene, and supplies.
+            </p>
+
+          </div>
+
+          <!-- Card -->
+          <div class="bg-[#EDDABF]/40 rounded-2xl p-5">
+
+            <div class="flex items-center justify-between">
+
+              <h3 class="font-bold text-lg">
+                Search Inventory
+              </h3>
+
+              <div class="w-3 h-3 rounded-full bg-[#AF0A08]"></div>
+
+            </div>
+
+            <p class="text-stone-600 mt-2 leading-relaxed">
+              Quickly search and locate inventory items using the search bar.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</body>
+
+</html>
+
+<!-- 
+<html>
 	<head> 
-		<!-- Refer to the indexStyles.css as this and not as ../public/indexStyles.css -->
 		<link rel="stylesheet" href="/indexStyles.css">
 		<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 	</head>
@@ -27,4 +170,4 @@
 		</div>
 	</body>
 	
-</html>
+</html> -->
