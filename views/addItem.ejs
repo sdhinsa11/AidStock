@@ -1,0 +1,72 @@
+<html> 
+	<head>
+		<link rel="stylesheet" href="/indexStyles.css">
+	</head>
+	
+	<body>
+		<%-include('navBarView')%>
+		<div class="main - AddingItem">
+			
+			<div class="addTitle"><h1>Enter a new item</h1></div>
+			<!-- This POST method will relate too the POST call when we add the data to the messages -->
+			<div class="msgs - add">
+
+				<!-- https://stackoverflow.com/questions/774054/should-i-put-input-elements-inside-a-label-element -->
+				<form method="POST" action="/items/newItem">
+					<label>Item Name:
+						<input type="text" name="item_name"/>
+					</label>
+					
+                    <label>Item Description:
+						<input type="text" name="desc"/>
+					</label>
+
+                    <label>Item Quantity:
+						<input type="text" name="quantity"/>
+					</label>
+
+                    <label>Item Unit:
+						<input type="text" name="unit"/>
+					</label>
+
+                    <label>Item Expiration Date:
+						<input type="date" name="exp_date"/>
+					</label>
+
+                    <label>
+                        Item Category:
+                        <select name="category_id" required>
+                            <% categories.forEach((category) => { %>
+                            <option value="<%= category.id %>">
+                                <%= category.name %>
+                            </option>
+                            <% }); %>
+                        </select>
+                    </label>
+
+                    <input type="hidden" name="returnTo" value="<%= returnTo %>">
+
+
+					<button type="submit">Submit</button>
+					
+					
+					<!-- // Add the form data to a object inside req.body - inside the POST object - need to use a middleware called express.urlencoded() to parse form data  -->
+					
+				</form>
+			</div>
+
+			<div class="links">
+                <a href="<%= backLink %>">Back</a>
+            </div>
+
+		</div>
+		
+	</body>
+
+</html>
+
+
+<!-- // heading 
+// two inputs 
+// submit button  -->
+			

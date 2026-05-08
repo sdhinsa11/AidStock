@@ -8,7 +8,7 @@ async function getItems() {
 }
 
 async function getCategory() {
-  const { rows } = await pool.query("SELECT * FROM categories");
+  const { rows } = await pool.query("SELECT * FROM categories ORDER BY name");
   return rows;
 }
 
@@ -27,6 +27,21 @@ async function getItemDb(itemID){
 
 }
 
+async function addItemDb(name, desc, quantity, unit, expiration_date, category_id) {
+  const result = await pool.query(
+    `
+    INSERT INTO items 
+      (name, description, quantity, unit, expiration_date, category_id)
+    VALUES 
+      ($1, $2, $3, $4, $5, $6)
+    RETURNING *;
+    `,
+    [name, desc, quantity, unit, expiration_date, category_id]
+  );
+
+  return result.rows[0];
+}
+
 
 // async function insertUsername(username) {
 //   await pool.query("INSERT INTO usernames (username) VALUES ($1)", [username]);
@@ -36,6 +51,7 @@ export {
   getItems,
   getCategory,
   getCategoryItems,
-  getItemDb
+  getItemDb,
+  addItemDb
 
 };
