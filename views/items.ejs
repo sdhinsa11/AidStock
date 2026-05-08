@@ -18,7 +18,7 @@
 							<%=item.name%>
 						</a> -->
 
-						<!-- This sets the returnTo parameter to the original url so when we touch the item it holds the returnTo parameter for the back link  -->
+						<!-- This sets the returnTo parameter to the original url so when we touch the item it holds the returnTo parameter for the back link   -->
 						<a href="/items/<%= item.id %>?returnTo=<%= encodeURIComponent(originalUrl) %>">
                     		<%= item.name %>
                 		</a>

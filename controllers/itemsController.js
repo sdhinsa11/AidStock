@@ -5,6 +5,7 @@ import {getItems, getCategoryItems, getItemDb} from "../storage/queries.js"; // 
 async function getAllItems(req, res){
     // check if there are params
 
+    // there is filtering on the category
     if (req.query.category){
         
         const category = req.query.category;
@@ -40,6 +41,7 @@ async function getAllItems(req, res){
 async function getItem(req, res){
 
     const { id } = req.params;
+    const { backLink } = req.query.returnTo;
     const item = await getItemDb(id); // getting the item by ID - did not destructure it like this { item } because it doesn't return an object that says item and so in queries.js we needed to go into the rows and return the first index
     
     if (!item) {
@@ -47,7 +49,7 @@ async function getItem(req, res){
 		return; 
 	}
 
-    res.render("singleItem", {item: item, backLink: req.query.returnTo || "/items"});
+    res.render("singleItem", {item: item, backLink: backLink}); // this will alwasy be here because it's alwasy passed through as "/items" or the category filter
 }
 
 
