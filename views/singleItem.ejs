@@ -1,4 +1,149 @@
 <html>
+
+<head>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <title><%= item.name %> | Aid Stock</title>
+
+</head>
+
+<body class="font-['Quicksand'] bg-[#EDDABF]/30 min-h-screen text-stone-800">
+
+  <%- include('navBarView') %>
+
+  <main class="max-w-4xl mx-auto px-6 py-12">
+
+    <!-- Card -->
+    <div class="bg-white rounded-3xl shadow-xl border border-[#E0C27D] p-10">
+
+      <!-- Top -->
+      <div class="flex justify-between items-start gap-6">
+
+        <div>
+
+          <p class="uppercase tracking-widest text-sm text-[#AF0A08] font-semibold">
+            Inventory Item
+          </p>
+
+          <h1 class="text-5xl font-bold text-[#AF0A08] mt-2">
+            <%= item.name %>
+          </h1>
+
+        </div>
+
+        <div class="bg-[#EDDABF]/50 rounded-2xl px-5 py-4 text-center">
+
+          <p class="text-sm text-stone-500">
+            Quantity
+          </p>
+
+          <p class="text-4xl font-bold text-[#AF0A08]">
+            <%= item.quantity %>
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- Description -->
+      <div class="mt-10">
+
+        <h2 class="text-2xl font-bold text-[#AF0A08]">
+          Description
+        </h2>
+
+        <p class="mt-4 text-lg text-stone-700 leading-relaxed">
+          <%= item.description || "No description available." %>
+        </p>
+
+      </div>
+
+      <!-- Extra Info -->
+      <div class="grid sm:grid-cols-2 gap-6 mt-10">
+
+        <!-- Unit -->
+        <div class="bg-[#EDDABF]/40 rounded-2xl p-6">
+
+          <p class="text-sm text-stone-500">
+            Unit
+          </p>
+
+          <p class="text-2xl font-bold mt-2">
+            <%= item.unit || "N/A" %>
+          </p>
+
+        </div>
+
+        <!-- Expiration -->
+        <div class="bg-[#EDDABF]/40 rounded-2xl p-6">
+
+          <p class="text-sm text-stone-500">
+            Expiration Date
+          </p>
+
+          <p class="text-2xl font-bold mt-2">
+            <%= item.expiration_date || "N/A" %>
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex flex-wrap gap-3 mt-10">
+
+        <button
+          class="px-5 py-3 rounded-2xl bg-[#E0A955] hover:bg-[#E09524] text-white transition"
+        >
+          + Increase
+        </button>
+
+        <button
+          class="px-5 py-3 rounded-2xl bg-[#E0C27D] hover:bg-[#E0A955] text-stone-900 transition"
+        >
+          − Decrease
+        </button>
+
+        <button
+          class="px-5 py-3 rounded-2xl bg-red-700 hover:bg-red-800 text-white transition"
+        >
+          Delete Item
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- Back -->
+    <div class="mt-8">
+
+      <a
+        href="<%= backLink %>"
+        class="text-[#AF0A08] font-semibold hover:underline"
+      >
+        ← Back
+      </a>
+
+    </div>
+
+  </main>
+
+</body>
+
+</html>
+
+
+
+
+
+
+<!-- <html>
 	<head>
         <link rel="stylesheet" href="/indexStyles.css">
         <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
@@ -30,11 +175,11 @@
             </div>
         
 
-            <!-- Go back to main screen -->
+            Go back to main screen
             <div class="links"><a href="<%= backLink %>">Back</a></div>
             
         
         </div>
 		
 	</body>
-</html>
+</html> -->
