@@ -1,6 +1,6 @@
 
 import { Router } from "express";
-import { getAllItems, getItem, addItem, addItemForm } from "../controllers/itemsController.js";
+import { getAllItems, getItem, addItem, addItemForm, searchItem } from "../controllers/itemsController.js";
 
 const itemRouter = Router();
 
@@ -12,6 +12,8 @@ itemRouter.get("/", getAllItems);
 // order matters
 itemRouter.get("/newItem", addItemForm);
 itemRouter.post("/newItem", addItem);
+
+itemRouter.get("/search", searchItem);
 
 itemRouter.get("/:id", getItem);
 

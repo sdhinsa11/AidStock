@@ -27,6 +27,12 @@ async function getItemDb(itemID){
 
 }
 
+async function getSearchedItems(itemName){
+  const { rows } = await pool.query("SELECT * FROM items WHERE name ILIKE $1", [`%${itemName}%`]);
+  return rows;
+
+}
+
 async function addItemDb(name, desc, quantity, unit, expiration_date, category_id) {
   const result = await pool.query(
     `
@@ -52,6 +58,7 @@ export {
   getCategory,
   getCategoryItems,
   getItemDb,
-  addItemDb
+  addItemDb,
+  getSearchedItems
 
 };

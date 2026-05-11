@@ -1,5 +1,5 @@
 import { body, validationResult, matchedData} from "express-validator";
-import {getItems, getCategoryItems, getItemDb, addItemDb, getCategory} from "../storage/queries.js"; // holds the functions we want to call
+import {getItems, getCategoryItems, getItemDb, addItemDb, getCategory, getSearchedItems} from "../storage/queries.js"; // holds the functions we want to call
 
 
 async function getAllItems(req, res){
@@ -63,8 +63,6 @@ async function addItemForm(req, res){
 }
 
 async function addItem(req, res){
-
-	// var msgs = getAllMessages();
 	
 	const {
         item_name,
@@ -87,6 +85,21 @@ async function addItem(req, res){
 }
 
 
+async function searchItem(req, res){
+
+    const query = req.query.query; // query not body because 
+    const results = await getSearchedItems(query);
+
+    res.render("items", {
+        items: results,
+        backLink: req.query.returnTo || "/items",
+        originalUrl: req.originalUrl // takes the original url to go back to
+
+    });
+
+}
 
 
-export {getAllItems, getItem, addItem, addItemForm};
+
+
+export {getAllItems, getItem, addItem, addItemForm, searchItem};
