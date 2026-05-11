@@ -48,6 +48,48 @@ async function addItemDb(name, desc, quantity, unit, expiration_date, category_i
   return result.rows[0];
 }
 
+// Get user by username
+async function getUserByUsername(username) {
+  const { rows } = await pool.query(
+    "SELECT * FROM users WHERE username = $1",
+    [username]
+  );
+
+  return rows[0];
+}
+
+// Increase quantity
+async function increaseItemQuantity(id) {
+  await pool.query(
+    `
+    UPDATE items
+    SET quantity = quantity + 1
+    WHERE id = $1
+    `,
+    [id]
+  );
+}
+
+// Decrease quantity
+async function decreaseItemQuantity(id) {
+  await pool.query(
+    `
+    UPDATE items
+    SET quantity = quantity - 1
+    WHERE id = $1 AND quantity > 0
+    `,
+    [id]
+  );
+}
+
+// Delete item
+async function deleteItemById(id) {
+  await pool.query(
+    "DELETE FROM items WHERE id = $1",
+    [id]
+  );
+}
+
 
 // async function insertUsername(username) {
 //   await pool.query("INSERT INTO usernames (username) VALUES ($1)", [username]);
@@ -59,6 +101,9 @@ export {
   getCategoryItems,
   getItemDb,
   addItemDb,
-  getSearchedItems
-
+  getSearchedItems,
+  getUserByUsername,
+  increaseItemQuantity,
+  decreaseItemQuantity,
+  deleteItemById
 };

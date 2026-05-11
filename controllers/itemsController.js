@@ -1,5 +1,14 @@
+import bcrypt from "bcrypt";
 import { body, validationResult, matchedData} from "express-validator";
-import {getItems, getCategoryItems, getItemDb, addItemDb, getCategory, getSearchedItems} from "../storage/queries.js"; // holds the functions we want to call
+import {getItems, getCategoryItems, 
+    getItemDb, 
+    addItemDb, 
+    getCategory, 
+    getSearchedItems, 
+    getUserByUsername,
+    increaseItemQuantity,
+    decreaseItemQuantity,
+    deleteItemById } from "../storage/queries.js"; // holds the functions we want to call
 
 
 async function getAllItems(req, res){
@@ -99,7 +108,85 @@ async function searchItem(req, res){
 
 }
 
+// used in other functions to check if they have permissions
+async function userHasPermission(username, password, allowedRoles) {
+  const user = await getUserByUsername(username);
+
+  if (!user) {
+    return false;
+  }
+
+  const passwordMatches = await bcrypt.compare(
+    password,
+    user.password_hash
+  );
+
+  if (!passwordMatches) {
+    return false;
+  }
+
+  return allowedRoles.includes(user.role);
+}
+
+async function increaseItem(req, res) {
+  const { id } = req.params;
+  const { username, password } = req.body;
+
+  const allowed = await userHasPermission(
+    username,
+    password,
+    ["manager", "admin"]
+  );
+
+  if (!allowed) {
+    return res.status(403).send("You do not have permission to increase this item.");
+  }
+
+  await increaseItemQuantity(id);
+
+  res.redirect(`/items/${id}`);
+}
+
+async function decreaseItem(req, res) {
+  const { id } = req.params;
+  const { username, password } = req.body;
+
+  const allowed = await userHasPermission(
+    username,
+    password,
+    ["manager", "admin"]
+  );
+
+  if (!allowed) {
+    return res.status(403).send("You do not have permission to decrease this item.");
+  }
+
+  await decreaseItemQuantity(id);
+
+  res.redirect(`/items/${id}`);
+}
+
+async function deleteItem(req, res) {
+  const { id } = req.params;
+  const { username, password } = req.body;
+
+  const allowed = await userHasPermission(
+    username,
+    password,
+    ["admin"]
+  );
+
+  if (!allowed) {
+    return res.status(403).send("You do not have permission to delete this item.");
+  }
+
+  await deleteItemById(id);
+
+  res.redirect("/items");
+}
 
 
 
-export {getAllItems, getItem, addItem, addItemForm, searchItem};
+
+
+export {getAllItems, getItem, addItem, addItemForm, searchItem, increaseItem, decreaseItem, deleteItem};
